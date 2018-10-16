@@ -51,16 +51,26 @@ function populate(url) {
     let myObj = JSON.parse(res.currentTarget.response);
   
     const breakDown = myObj.data.children;
-    const scrubData = breakDown.map(post => { 
-      
-      //scrubData  (post)
-      //needs to return
-      //past in post and turn into card for me
-    });
-    scrubData.forEach(cardData => {
-      //createCard(cardData)      
-    });
+    const scrubData = breakDown.map(cleanData);
 
+    function cleanData (post) {
+      const newPost = {};
+      newPost.title = post.data.title;
+      newPost.author = post.data.author;
+      return newPost;
+    }
+
+    console.log('keyy', scrubData);
+    var cardsElems = scrubData.map(cardData => {
+      console.log('carrdddsss', cardData); //pretty much newPost
+      //createCard(cardData) 
+    });
+    function createCard (cardData) {
+      //dom creation
+      const cardsDisplay = document.createElement('div'); 
+      
+    }
+    //append cardsElems here
     // let postElem = document.createElement("div");
     // postElem.className = "posts";
     // let titleElem = document.createElement("div");
