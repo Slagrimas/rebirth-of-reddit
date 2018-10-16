@@ -26,7 +26,7 @@ document.getElementById("myBoards").addEventListener("click", setMyBoardsClicked
 function setMyBoardsClicked() {
   console.log("myBoards clicked");
   populate("https://www.reddit.com/r/toyotatacoma.json");
-  console.log('OHMYGAWD', populate);
+  // console.log('OHMYGAWD', populate);
 };
 
 document.getElementById("getTheApp").addEventListener("click", setGetTheAppClicked);
@@ -50,42 +50,72 @@ function populate(url) {
   request(url, res => {
     let myObj = JSON.parse(res.currentTarget.response);
   
-    let childrenData = myObj.data.children[i].data
-    // for (let i = 0; i < myObj.data.children.length; i++) {
-    //   // look back at fun arrays. /1st
-    //   //Create divs
-    //   let postElem = document.createElement("div");
-    //   postElem.className = "posts";
-    //   let titleElem = document.createElement("div");
-    //   titleElem.id = "title";
-    //   let authorElem = document.createElement("div");
-    //   authorElem.id = "author";
+    const breakDown = myObj.data.children;
+    const scrubData = breakDown.map(post => { 
+      
+      //scrubData  (post)
+      //needs to return
+      //past in post and turn into card for me
+    });
+    scrubData.forEach(cardData => {
+      //createCard(cardData)      
+    });
 
+    // let postElem = document.createElement("div");
+    // postElem.className = "posts";
+    // let titleElem = document.createElement("div");
+    // titleElem.id = "title";
+    // let authorElem = document.createElement("div");
+    // authorElem.id = "author";
+     
     //   //Get data from url //function 
     //   console.log("response: ", myObj);
 
-    //   console.log("post title: ", myObj.data.children[i].data.title);
-    //   let postTitle = myObj.data.children[i].data.title;
+    //   // console.log("post title: ", myObj.data.children[i].data.title);
+    //   let postTitle =breakDown[i].data.title;
+     
+    //   // console.log("post author: ", myObj.data.children[i].data.author);
+    //   let username = breakDown[i].data.author;
+    
+    //   // console.log("post ups: ", myObj.data.children[i].data.upsCount);
+    //   let postUps = breakDown[i].data.ups;
 
-    //   console.log("post author: ", myObj.data.children[i].data.author);
-    //   let username = myObj.data.children[i].data.author;
+    //   // console.log("post comment count: ", myObj.data.children[i].data.num_comments);
+    //   let numComments = breakDown[i].data.num_comments;
 
-    //   console.log("post ups: ", myObj.data.children[i].data.upsCount);
-    //   let postUps = myObj.data.children[i].data.ups;
-
-    //   console.log("post comment count: ", myObj.data.children[i].data.num_comments);
-    //   let numComments = myObj.data.children[i].data.num_comments;
-
-    //   console.log("media link: ", myObj.data.children[i].data.url);
-    //   let mediaLink = myObj.data.children[i].data.url;
-    //   console.log("domain: ", mediaLink.slice(10, 14))
-    //   let domainStr = myObj.data.children[i].data.domain;
-    //   console.log("thumbnail: ", myObj.data.children[i].data.thumbnail)
-    //   let thumbnailLink = myObj.data.children[i].data.thumbnail;
+    //   // console.log("media link: ", myObj.data.children[i].data.url);
+    //   let mediaLink = breakDown[i].data.url;
+    //   // console.log("domain: ", mediaLink.slice(10, 14))
+    //   let domainStr = breakDown[i].data.domain;
+    //   // console.log("thumbnail: ", myObj.data.children[i].data.thumbnail)
+    //   let thumbnailLink = breakDown.data.thumbnail;
 
     //   //Put info into html file
-    //   // if (myObj.data.children[i].data.post_hint === "image") {
-    //   // }
+    //   if (breakDown[i].data.post_hint === "image") {
+    //     let imageElem = document.createElement("img");
+    //     if (domainStr === "i.redd.it") {
+    //       imageElem.src = thumbnailLink;
+    //       postElem.appendChild(imageElem);
+    //     }
+    //     else {
+    //       imageElem.src = mediaLink;
+    //       postElem.appendChild(imageElem);
+    //     }
+    //   }
+    //   else if (breakDown[i].data.post_hint === "link") {
+    //     let imageElem = document.createElement("img");
+      
+    //    //If this is a gif and it has a 'v' at the end of the link, remove the v for the gif to load properly on the page
+    //    if (mediaLink[mediaLink.length - 1] === "v") {
+    //     let gifLink = mediaLink.slice(0, length - 1);
+    //     console.log("gifLink: ", gifLink);
+    //     imageElem.src = gifLink;
+    //     postElem.appendChild(imageElem);
+    //   }
+    //   else {
+    //     imageElem.src = thumbnailLink;
+    //     postElem.appendChild(imageElem);
+    //   }
     // }
   })
 }
