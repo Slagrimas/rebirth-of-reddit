@@ -5,7 +5,7 @@ const request = (url, callback) => {
   oReq.open("GET", url);
   oReq.send();
 };
-
+//the container that holds everything set html to empty string
 let randomClicked = false;
 let myBoardsClicked = false;
 let getTheAppClicked = false;
@@ -25,7 +25,7 @@ function setRandomClicked() {
 document.getElementById("myBoards").addEventListener("click", setMyBoardsClicked);
 function setMyBoardsClicked() {
   console.log("myBoards clicked");
-  populate("https://www.reddit.com/r/nissangtrr35.json");
+  populate("https://www.reddit.com/r/nissangtr/.json");
 };
 
 document.getElementById("getTheApp").addEventListener("click", setGetTheAppClicked);
@@ -39,11 +39,6 @@ function populate(url) {
 
   let postsBodyElem = document.getElementById("postsBody");
 
-  //Remove all the previous posts so the new url's posts can be populated
-  for (let j = postsClass.length - 1; j >= 0; j--) {
-    postsClass[j].remove();
-    //postsBodyElem.removeChild(postsBodyElem.childNodes[j])
-  }
   const postBody = document.querySelector('#postsBody');
   //Populate the page with posts
   request(url, res => {
@@ -52,23 +47,10 @@ function populate(url) {
     const breakDown = myObj.data.children;
     const scrubData = breakDown.map(cleanData);
 
-    function cleanData (post) {
-      const newPost = {};
-    newPost.title = post.data.title;
-      newPost.author = post.data.author;
-      newPost.selftext = post.data.selftext;
-      newPost.date = post.data.date;
-      newPost.thumbnail = post.data.thumbnail;
-      return newPost;
-    }
-
-    var cardsElems = scrubData.map(cardData => {
-      console.log('LOLOLOL', cardData)
-      //dom creation
+    function buildCard(cardData) {
       let postElem = document.createElement("div");
-      console.log(cardData.title);
       postElem.id = "posts";
-      postElem.innerHTML = " ";
+      postElem.innerHTML = "";
 
       let titleElem = document.createElement("div");
       titleElem.id = "title";
@@ -80,27 +62,45 @@ function populate(url) {
 
       let selftextElem = document.createElement("div");
       selftextElem.id = "selftext"
-     selftextElem.innerHTML = cardData.selftext
+      selftextElem.innerHTML = cardData.selftext
 
-     let thumbnailElem = document.createElement("img")
-     thumbnailElem.id = "thumbNail"
-    //  thumbnailElem.innerHTML = cardData.data.thumbnail;
-     thumbnailElem.src = cardData.thumbnail
-    //  console.log("yeahUHUH", cardData.thumbnail);
+      let thumbnailElem = document.createElement("img")
+      thumbnailElem.id = "thumbNail"
+      thumbnailElem.src = cardData.thumbnail
 
-     let dateElem = document.createElement("div");
-     dateElem.id = "dateElem"
-     dateElem.innerHTML = "10/17/18" 
+      let dateElem = document.createElement("div");
+      dateElem.id = "dateElem"
+      dateElem.innerHTML = "10/17/18"
 
       postElem.appendChild(titleElem);
       titleElem.appendChild(authorElem);
       authorElem.appendChild(selftextElem)
       selftextElem.appendChild(dateElem)
       dateElem.appendChild(thumbnailElem)
-      // const postBody = document.querySelector('postsBody');
-      postsBody.appendChild(postElem);
-      
+
+      return postElem;
+    }
+
+    var cardsElems = document.createElement('div');
+    scrubData.forEach(cardData => {
+
+      const cardBuild = buildCard(cardData);
+
+      cardsElems.appendChild(cardBuild);
     })
-    console.log('UHUHUH', cardsElems);
+
+    postsBody.innerHTML = "";
+    postsBody.appendChild(cardsElems);
+
   })
+}
+
+function cleanData(post) {
+  const newPost = {};
+  newPost.title = post.data.title;
+  newPost.author = post.data.author;
+  newPost.selftext = post.data.selftext;
+  newPost.date = post.data.date;
+  newPost.thumbnail = post.data.thumbnail;
+  return newPost;
 }
