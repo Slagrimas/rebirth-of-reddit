@@ -48,6 +48,7 @@ function populate(url) {
   //Populate the page with posts
   request(url, res => {
     let myObj = JSON.parse(res.currentTarget.response);
+    
     for (let i = 0; i < myObj.data.children.length; i++) {
       //Create divs
       let postElem = document.createElement("div");
