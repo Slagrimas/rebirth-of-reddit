@@ -1,0 +1,24 @@
+{
+  "name": "rebirth-of-reddit",
+  "version": "0.0.1",
+  "description": "Rebirth Of Reddit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Slagrimas/rebirth-of-reddit.git"
+  },
+  "author": "Shadrach Lagrimas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Slagrimas/rebirth-of-reddit/issues"
+  },
+  "homepage": "https://github.com/Slagrimas/rebirth-of-reddit#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.2"
+  }
+}
