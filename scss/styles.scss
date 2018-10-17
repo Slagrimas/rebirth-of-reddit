@@ -2,24 +2,6 @@
 @import 'variables';
 @import 'mixins';
 
-body {
-  background-color: grey;
-}
-
-.header{
-  padding: 10px;
-  text-align: center;
-  font-size: 2rem;
-  color: $light-grey;
-  background-color: white;  
-  @include tablet {
-    font-size: 2.5rem;
-    padding: 20px;
-  }
-}
-
-.container {
-  height: 5%;
-  min-width: 400px;
-  color: $nice-green;
+#logo:hover{
+  cursor: pointer;
 }
